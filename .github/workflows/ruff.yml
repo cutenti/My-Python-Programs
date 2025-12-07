@@ -1,0 +1,30 @@
+name: Ruff
+
+on: 
+  push:
+
+jobs:
+  ruff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Get changed Python files
+        id: changed-files
+        run: |
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep '\.py$' | tr '\n' ' ' || true)
+          echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+          echo "Changed Python files: $CHANGED_FILES"
+      
+      - name: Run Ruff on changed files
+        if: steps.changed-files.outputs.changed_files != ''
+        uses: astral-sh/ruff-action@v3
+        with:
+          version: "0.4.4"
+          args: "check --output-format=github ${{ steps.changed-files.outputs.changed_files }}"
+      
+      - name: No Python files changed
+        if: steps.changed-files.outputs.changed_files == ''
+        run: echo "No Python files to check"
