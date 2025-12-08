@@ -11,6 +11,11 @@ def curry(func, arity):
     raises: ValueError - если арность отрицательная.
     """
 
+    actual_argcount = func.__code__.co_argcount
+
+    if arity > actual_argcount:
+        raise ValueError(f"Арность {arity} превышает количество параметров функции")
+
     if arity < 0:
         raise ValueError("Арность не должна быть <0")
 

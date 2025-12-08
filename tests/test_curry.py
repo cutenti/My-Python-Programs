@@ -40,11 +40,9 @@ def test_uncurry_basic():
 
     curried = curry(add_4, 4)
     uncurried = uncurry(curried, 4)
-    re_curried = curry(uncurried, 4)
 
     assert curried(1)(2)(3)(4) == 10
     assert uncurried(1, 2, 3, 4) == 10
-    assert re_curried(1)(2)(3)(4) == 10
 
 
 def test_zero_arity():

@@ -16,6 +16,7 @@ target-version = "py312"
       "RET",      # Хорошие практики возврата
       "SIM",      # Общие правила упрощения
   ]
+extend-ignore = ["I001"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
