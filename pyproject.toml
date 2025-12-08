@@ -16,3 +16,7 @@ target-version = "py312"
       "RET",      # Хорошие практики возврата
       "SIM",      # Общие правила упрощения
   ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
