@@ -2,17 +2,18 @@ class NodeHeap:
     def __init__(self, key, value):
         self.priority = key
         self.value = value
-        self.degree = 0 # колво детей узлов
+        self.degree = 0  # колво детей узлов
         self.parent = None
-        self.child = None # left
-        self.sibling = None # right
+        self.child = None  # left
+        self.sibling = None  # right
+
 
 class Heap:
     def __init__(self):
         self.head = None
 
     def is_empty(self):
-        return self.head == None
+        return self.head is None
 
     def insert(self, key, value):
         new_heap = Heap()
@@ -30,7 +31,7 @@ class Heap:
         while cur:
             if cur.key < min_node.key:
                 min_node = cur
-            curr = cur.sibling
+            cur = cur.sibling
 
         return min_node.key
 
@@ -64,4 +65,3 @@ class Heap:
             curr.sibling = p2
 
         return result
-
