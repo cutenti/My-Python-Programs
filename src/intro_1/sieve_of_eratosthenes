@@ -1,0 +1,23 @@
+def sieve(n):
+    """
+    Реализация решета Эратосфена.
+    Функция возвращает массив простых чисел от 1 до n.
+    """
+
+    prime = [1 for i in range(n + 1)]
+    prime[0] = prime[1] = 0
+
+    num = 2
+    while num * num <= n:
+        if prime[num] == 1:
+            for i in range(num * num, n + 1, num):
+                prime[i] = 0
+        num += 1
+
+    result = []
+
+    for num in range(n + 1):
+        if prime[num]:
+            result.append(num)
+
+    return result
