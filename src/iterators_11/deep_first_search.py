@@ -45,11 +45,9 @@ class Graph:
                 visited.add(vertex)
                 result.append(vertex)
 
-                neighbors = []
-                for neighbor in self.conection_list[vertex]:
+                for neighbor in reversed(self.conection_list[vertex]):
                     if neighbor not in visited:
-                        neighbors.append(neighbor)
-                stack.extend(reversed(neighbors))  # Чтобы идти слева направо
+                        stack.append(neighbor)
 
         return result
 
